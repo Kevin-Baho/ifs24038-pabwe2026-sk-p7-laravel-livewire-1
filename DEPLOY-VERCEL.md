@@ -54,3 +54,10 @@ php artisan serve
 ## Catatan
 - Upload cover gambar disimpan di `/tmp` Vercel (hilang saat instance restart).
 - Login seeder: admin / admin, member / member (jika tabel `users` kamu masih berisi data itu).
+
+## Jika muncul "500 Server Error"
+1. Vercel -> Settings -> Environment Variables -> tambah `DB_CHECK` = `1` -> Redeploy.
+2. Buka `https://<domain-kamu>.vercel.app/db-check` -> akan tampil penyebab (DB_HOST kosong,
+   koneksi ditolak, SSL, tabel belum ada, dll). Hapus `DB_CHECK` setelah beres.
+3. Bila `DB_HOST` belum diisi, aplikasi otomatis memakai SQLite sementara (data seeder, BUKAN data HeidiSQL).
+4. Cek juga Vercel -> Deployments -> Logs untuk error PHP.
